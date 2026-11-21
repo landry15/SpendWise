@@ -1,0 +1,6 @@
+{
+  "name": "SpendWise",
+  "description": "Application Android hors-ligne de gestion de dépenses personnelles avec Room, tableau de bord statistique, catégories personnalisées et export CSV.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
