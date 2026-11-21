@@ -1,159 +1,66 @@
-# SpendWise — Gestion de dépenses personnelles
+# SpendWise — Fiche de Contribution Individuelle & Guide de Soutenance
 
-Application Android native (100 % hors-ligne) permettant de suivre ses dépenses quotidiennes.
-Projet d'examen de Programmation mobile BAC3, réalisé en groupe de 4 étudiants.
-
-
-## 1. Informations générales
-
-| Élément | Détail |
-|---|---|
-| Groupe | **[À COMPLÉTER : numéro / nom du groupe]** |
-| Établissement | **[À COMPLÉTER]** |
-| Langage | **[À COMPLÉTER : Kotlin ou Java]** |
-| SDK minimum | API 24 (Android 7.0) |
-| Stockage | Base locale **[À COMPLÉTER : Room ou SQLite]**, aucune API distante |
-| Architecture | **[À COMPLÉTER : MVVM ou MVC]** |
+**Établissement / Promotion :** BAC3 — Examen de Programmation Mobile  
+**Projet :** SpendWise (Application Android hors-ligne)  
+**Dépôt Git recommandé :** 1 branche principale (`main`) + 4 branches fonctionnelles (`feat/auth-profile`, `feat/expenses-crud`, `feat/dashboard-stats`, `feat/export-settings`) fusionnées par Pull Requests.
 
 ---
 
-## 2. Fonctionnalités (4 modules)
+## 1. Tableau de répartition des contributions (Total = 100 %)
 
-| Module | Contenu | Responsable |
-|---|---|---|
-| 1 — Authentification & Profil | Inscription (nom, email, mot de passe), connexion, stockage sécurisé (hash du mot de passe), écran de profil (modification du nom, déconnexion) | **Landry Mulumeoderhwa** |
-| 2 — Gestion des dépenses (CRUD) | Ajout, liste, modification, suppression ; validation (montant > 0, date valide, etc.) | **Landry Mulumeoderhwa** |
-| 3 — Tableau de bord & statistiques | Total du mois, répartition par catégorie, filtres jour / semaine / mois, budget mensuel restant | **Kupa Mangondo Pascal** |
-| 4 — Export & paramètres | Export CSV et partage, paramètres (devise, thème clair/sombre, réinitialisation des données), gestion des catégories | **Kupa Mangondo Pascal** |
+> *Complétez les noms, prénoms et signatures des 4 membres du groupe avant remise du PDF.*
 
----
-
-## 3. Prérequis
-
-- Android Studio : **[À COMPLÉTER : version utilisée]**
-- JDK : **[À COMPLÉTER : version]**
-- Android SDK : plateforme **[À COMPLÉTER]**, outils de build **[À COMPLÉTER]**
-- Gradle : via le wrapper fourni (`gradlew`), version **[À COMPLÉTER]**
-- Dépendances principales (voir `app/build.gradle`) : **[À COMPLÉTER : Room, ViewModel/LiveData, etc.]**
-- Appareil cible : émulateur ou téléphone Android 7.0 (API 24) minimum
+| Membre (Nom & Prénom) | Branche Git & Module(s) réalisé(s) | Tâches concrètes effectuées | % Contribution | Signature |
+| :--- | :--- | :--- | :---: | :---: |
+| **Étudiant 1 :** *[Landry Mulumeoderhwa]* | `feat/auth-profile`<br>**Module 1 : Authentification & Profil** + Socle Room/DataStore | Conception du schéma `UserEntity`/`UserDao`, hachage salé PBKDF2 (`PasswordHasher`), gestion de session DataStore, écrans `LoginScreen`, `RegisterScreen`, `ProfileScreen`, pré-remplissage démo (`DatabaseSeeder`). | **25 %** | _________________ |
+| **Étudiant 2 :** *[Landry Mulumeoderhwa]* | `feat/expenses-crud`<br>**Module 2 : Gestion des Dépenses (CRUD)** | Modèles `ExpenseEntity`, `ExpenseWithCategory`, `ExpenseDao`, `ExpenseRepository`, validation des champs (`ValidationUtils`), `ExpensesViewModel`, écran `ExpensesScreen`, dialogue `AddEditExpenseDialog` avec `DatePickerDialog` et confirmation de suppression. | **25 %** | _________________ |
+| **Étudiant 3 :** *[Kupa Mangondo Pascal]* | `feat/dashboard-stats`<br>**Module 3 : Tableau de Bord & Statistiques** | Agrégation réactive dans `DashboardViewModel` (totaux jour/semaine/mois, budget restant), graphique circulaire `SpendingDonutChart` (Compose `Canvas`), barres de répartition, filtres par période et catégorie, configuration du budget mensuel. | **25 %** | _________________ |
+| **Étudiant 4 :** *[Kupa Mangondo Pascal]* | `feat/export-settings`<br>**Module 4 : Export CSV, Paramètres & Documentation** | `CsvExporter` (UTF-8 BOM, protection formules, `FileProvider` + `Intent.ACTION_SEND`), gestion des catégories personnalisées (`CategoryRepository`), changement de thème/devise, réinitialisation sécurisée, tests Robolectric et rédaction `doc_conception.md` / `doc_installation.md`. | **25 %** | _________________ |
+| **TOTAL GROUPE** | **4 Modules intégrés** | **Application complète testée & APK compilé** | **100 %** | — |
 
 ---
 
-## 4. Compiler le projet pas à pas
+## 2. Organisation Git recommandée pour l'examen
 
-1. Cloner le dépôt :
-   ```bash
-   git clone [À COMPLÉTER : URL du dépôt]
-   cd SpendWise
-   ```
-2. Ouvrir le dossier dans Android Studio (**File > Open**).
-3. Attendre la fin de la synchronisation Gradle (**Sync Project with Gradle Files** si besoin).
-4. Générer l'APK :
-   - Depuis Android Studio : **Build > Build Bundle(s) / APK(s) > Build APK(s)**
-   - Ou en ligne de commande :
-     ```bash
-     ./gradlew assembleDebug
-     ```
-5. L'APK est produit dans :
-   ```
-   app/build/outputs/apk/debug/app-debug.apk
-   ```
-   L'APK debug est signé automatiquement avec la clé de debug, ce qui le rend installable.
-
----
-
-## 5. Installer et lancer l'APK
-
-**Sur émulateur ou appareil physique (depuis Android Studio)**
-1. Créer un émulateur (API 24 ou plus) via **Device Manager**, ou brancher un téléphone avec le
-   débogage USB activé.
-2. Cliquer sur **Run ▶** pour installer et lancer l'application.
-
-**Avec l'APK directement**
 ```bash
-adb install -r app/build/outputs/apk/debug/app-debug.apk
-```
-Sur un téléphone, copier l'APK puis autoriser l'installation depuis des sources inconnues si Android le demande.
-
----
-
-## 6. Comptes de test
-
-| Nom | Email | Mot de passe | Remarque |
-|---|---|---|---|
-| **[À COMPLÉTER]** | **[À COMPLÉTER]** | **[À COMPLÉTER]** | **[À COMPLÉTER]** |
-
-*Indiquer uniquement les comptes réellement créés pour la démonstration. S'il n'y en a pas, expliquer
-comment créer un compte depuis l'écran d'inscription.*
-
----
-
-## 7. Structure du projet
-
-```
-SpendWise/
-├── app/
-│   └── src/main/
-│       ├── java/ (ou kotlin/)  → **[À COMPLÉTER : packages réels, ex. data, ui, viewmodel]**
-│       └── res/                → layouts, strings, thèmes
-├── docs/                       → diagrammes, maquettes
-├── README.md
-└── build.gradle
+git checkout -b feat/auth-profile      # Module 1 (Étudiant 1)
+git checkout -b feat/expenses-crud     # Module 2 (Étudiant 2)
+git checkout -b feat/dashboard-stats   # Module 3 (Étudiant 3)
+git checkout -b feat/export-settings   # Module 4 (Étudiant 4)
 ```
 
-*Adapter l'arbre à la structure réelle du code.*
+Exemples de messages de commit clairs :
+- `feat(auth): implement PBKDF2 salted password hashing and Room UserDao`
+- `feat(expenses): add CRUD screen, M3 DatePicker and input validation`
+- `feat(dashboard): add Canvas donut chart, period filters and budget card`
+- `feat(settings): add UTF-8 CSV export with FileProvider and custom categories`
 
 ---
 
-## 8. Documentation et livrables
+## 3. Guide rapide de préparation à la soutenance orale individuelle
 
-Dossier de rendu : `SpendWise_GroupeX/`
+Chaque étudiant doit pouvoir démontrer sa maîtrise technique du module qu'il a développé face au jury :
 
-| Fichier | Contenu |
-|---|---|
-| `app-debug.apk` | APK fonctionnel, signé et testé |
-| `doc_conception.pdf` | Cas d'utilisation (UML), schéma de la base, maquettes, architecture, choix techniques |
-| `doc_installation.pdf` | Prérequis, procédure de build, installation, comptes de test, limitations |
-| `contribution.xlsx` | Fiche de contribution individuelle signée par tous les membres |
-| Code source | Dépôt Git avec historique (ou archive ZIP) |
+### Questions probables — Étudiant 1 (Module 1 : Authentification & Profil)
+- **Pourquoi ne pas stocker le mot de passe en clair dans SQLite ?**  
+  Pour protéger la confidentialité même en cas d'extraction du fichier `spendwise_offline.db`. Nous utilisons `PasswordHasher` avec un sel aléatoire unique de 16 octets par utilisateur et 65 536 itérations PBKDF2 (`PBKDF2WithHmacSHA256`, avec repli `PBKDF2WithHmacSHA1` sur Android 7.0 API 24–25) ainsi qu'une comparaison à temps constant (`MessageDigest.isEqual`).
+- **Comment la session utilisateur survit-elle au redémarrage de l'application ?**  
+  L'identifiant utilisateur actif (`logged_in_user_id`) est stocké dans Jetpack DataStore (`UserPreferencesRepository`) et observé réactivement dans `AuthRepository.currentUser`.
 
----
+### Questions probables — Étudiant 2 (Module 2 : CRUD Dépenses)
+- **Comment assurez-vous la mise à jour instantanée de la liste après un ajout ou une modification ?**  
+  `ExpenseDao.observeExpensesWithCategory()` retourne un `Flow<List<ExpenseWithCategory>>` que Room émet automatiquement à chaque transaction sur les tables `expenses` ou `categories`, collecté dans Compose via `collectAsStateWithLifecycle()`.
+- **Quelles validations empêchent les données incohérentes ?**  
+  `ValidationUtils` vérifie que le montant est numérique et strictement `> 0`, que la description est non vide (2 à 120 caractères), qu'une catégorie est sélectionnée et que la date issue du `DatePickerDialog` est valide.
 
-## 9. Organisation du travail avec Git
+### Questions probables — Étudiant 3 (Module 3 : Tableau de bord & Statistiques)
+- **Comment les statistiques sont-elles recalculées lors du changement de période (Jour / Semaine / Mois) ?**  
+  `DashboardViewModel` combine (`combine(...)`) le flux de dépenses Room avec les `StateFlow` de filtres (`selectedPeriod`, `selectedCategoryId`) et les bornes calendaires calculées dans `FormatUtils` (`startOfDayMillis`, `startOfWeekMillis`, `startOfMonthMillis`).
+- **Comment le graphique circulaire est-il dessiné sans librairie externe ?**  
+  Le composable `SpendingDonutChart` utilise le `Canvas` natif de Jetpack Compose (`drawArc`) avec des angles proportionnels au pourcentage de chaque catégorie et une animation fluide (`animateFloatAsState`).
 
-- Une branche par module (par exemple `module-auth`, `module-depenses`, `module-stats`, `module-export`).
-- Commits clairs, identifiables par auteur.
-- Fusion sur `main` en fin de séance, pas de développement direct sur `main`.
-
----
-
-## 10. Équipe et contributions
-
-La somme des pourcentages doit faire 100 %. Les contributions peuvent être inégales si elles sont
-justifiées, et chaque membre doit pouvoir expliquer oralement la partie qu'il a réalisée.
-
-| Nom & Prénom | Module(s) réalisé(s) | Tâches concrètes effectuées | % de contribution |
-|---|---|---|---|
-| **[À COMPLÉTER]** | | | |
-| **[À COMPLÉTER]** | | | |
-| **[À COMPLÉTER]** | | | |
-| **[À COMPLÉTER]** | | | |
-| **Total** | | | **100 %** |
-
----
-
-## 11. Problèmes connus et limitations
-
-- **[À COMPLÉTER : lister honnêtement ce qui ne fonctionne pas encore ou reste limité]**
-
----
-
-## 12. Checklist avant dépôt
-
-- [ ] APK installé et testé sur émulateur/appareil
-- [ ] Les 4 modules sont accessibles et fonctionnels
-- [ ] Documentation de conception complète (UML, BDD, maquettes, architecture)
-- [ ] Documentation d'installation pas à pas
-- [ ] Fiche de contribution remplie, signée, somme = 100 %
-- [ ] Comptes de test fournis dans la documentation
-- [ ] Code source inclus (archive ZIP) avec historique Git si utilisé
+### Questions probables — Étudiant 4 (Module 4 : Export CSV, Catégories & Paramètres)
+- **Comment fonctionne le partage du fichier CSV sur Android récent sans demander de permission de stockage ?**  
+  Le fichier est écrit dans le répertoire privé interne (`context.filesDir/exports/`), puis exposé temporairement et en lecture seule via `androidx.core.content.FileProvider` (`FLAG_GRANT_READ_URI_PERMISSION`) à un `Intent(Intent.ACTION_SEND)` de type `text/csv`.
+- **Que se passe-t-il si l'utilisateur supprime une catégorie personnalisée déjà utilisée par des dépenses ?**  
+  `CategoryRepository.deleteCustomCategory()` réaffecte d'abord toutes les dépenses associées vers la catégorie par défaut *« Autre »* via `ExpenseDao.reassignCategory()`, évitant ainsi toute perte de dépense ou erreur de clé étrangère.
