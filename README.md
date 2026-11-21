@@ -21,10 +21,10 @@ Projet d'examen de Programmation mobile BAC3, réalisé en groupe de 4 étudiant
 
 | Module | Contenu | Responsable |
 |---|---|---|
-| 1 — Authentification & Profil | Inscription (nom, email, mot de passe), connexion, stockage sécurisé (hash du mot de passe), écran de profil (modification du nom, déconnexion) | **[À COMPLÉTER]** |
-| 2 — Gestion des dépenses (CRUD) | Ajout, liste, modification, suppression ; validation (montant > 0, date valide, etc.) | **[À COMPLÉTER]** |
-| 3 — Tableau de bord & statistiques | Total du mois, répartition par catégorie, filtres jour / semaine / mois, budget mensuel restant | **[À COMPLÉTER]** |
-| 4 — Export & paramètres | Export CSV et partage, paramètres (devise, thème clair/sombre, réinitialisation des données), gestion des catégories | **[À COMPLÉTER]** |
+| 1 — Authentification & Profil | Inscription (nom, email, mot de passe), connexion, stockage sécurisé (hash du mot de passe), écran de profil (modification du nom, déconnexion) | **Landry Mulumeoderhwa** |
+| 2 — Gestion des dépenses (CRUD) | Ajout, liste, modification, suppression ; validation (montant > 0, date valide, etc.) | **Landry Mulumeoderhwa** |
+| 3 — Tableau de bord & statistiques | Total du mois, répartition par catégorie, filtres jour / semaine / mois, budget mensuel restant | **Kupa Mangondo Pascal** |
+| 4 — Export & paramètres | Export CSV et partage, paramètres (devise, thème clair/sombre, réinitialisation des données), gestion des catégories | **Kupa Mangondo Pascal** |
 
 ---
 
